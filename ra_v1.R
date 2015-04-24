@@ -11,6 +11,7 @@
 #______________________________________________________________
 library(dplyr)
 library(tidyr)
+library(reshape2)
 
 if(!file.exists("./data")) {dir.create("./data")}
 
@@ -28,23 +29,10 @@ features <- read.table("./data/features.txt")
 features <- rename(features, id = V1, measure = V2)
 
 # Read the test files
+x_test <- read.table("./data/X_test.txt", col.names=features$measure) %>% tbl_df() 
 s_test <- read.table("./data/subject_test.txt", col.name="subject") %>% tbl_df()
 y_test <- read.table("./data/y_test.txt") %>% tbl_df() %>% inner_join(actv_lbl,by="V1")
-x_test <- read.table("./data/X_test.txt", col.names=features$measure) %>% tbl_df() 
 
-test_d <- cbind(s_test, y_test[2], x_test)
+test_d <- s_test %>% 
+    cbind(y_test[2], x_test) 
 
-# Read the train files
-s_train <- read.table("./data/subject_train.txt", col.name="subject") %>% tbl_df()
-y_train <- read.table("./data/y_train.txt") %>% tbl_df() %>% inner_join(actv_lbl,by="V1")
-x_train <- read.table("./data/X_train.txt", col.names=features$measure) %>% tbl_df() 
-
-train_d <- cbind(s_train, y_train[2], x_train)
-
-# merge the two data frames
-tot_data <- rbind(test_d, train_d)
-
-# pull out only the mean and standard deviation varibles for each subject and activity
-data_1 <- select(tot_data, subject, activity, contains("mean"), contains("std"))
-
-data_2 <- data_1 %>% group_by(subject, activity) %>% summarise_each(funs(mean))
