@@ -49,18 +49,18 @@ The feature labels are not particularly clear with out referring to the document
 
 The values in the features.txt file were translated using the following key:
 
-    * t = time
-    * f = frequency
-    * Body = body
-    * Grav = gravity
-    * Acc = accelerometer
-    * Gyro = gyroscope
-    * Jerk = jerk
-    * Mag = Magnitude
+    t = time
+    f = frequency
+    Body = body
+    Grav = gravity
+    Acc = accelerometer
+    Gyro = gyroscope
+    Jerk = jerk
+    Mag = Magnitude
 
-The resulting components were joined using a hyphen.  In addion, the parenthesis in the features.txt values were eliminated.  The following table provides some examples of the translations.
+The resulting components were joined using a hyphen.  In addion, the parenthesis in the features.txt values were eliminated.  The following table provides some examples of the translations.  The complete translation table is provided later in this document.
 
-"features.txt"" Value | Translated Value
+"features.txt" Value | Translated Value
 tBodyGyroJerk-arCoeff()-X,1|time-body-gyroscope-jerk-arCoeff-X,1
 tBodyAccJerkMag-min()|time-body-accelerometer-jerk-magnitude-min
 fBodyAcc-bandsEnergy()-33,40|frequency-body-accelerometer-bandsEnergy-33,40
