@@ -70,11 +70,8 @@ The data also include some features that had additional processing performed and
 ##Measurement Data
 The original test and training data were arranged in a *wide* manner with 561 columns.  The data were transformed into a *long* format with a "measure" column and single value column.  The translated features values (see above) were used for the "measure" column values.
 
-##Output Files
-The requested data are provided in CSV format. 
-
-* *HRA_data_mean_std_data.csv*: The extract of only the measurements on the mean and standard deviation for each measurement
-* *HRA_data_average.csv*: The extract with average of each variable for each activity and each subject drawn from the above extract.
+##Output File
+The requested data are provided in TXT format with a space separator and saved as*HRA_data_average.csv*. This extract contains the average of each variable for each activity and each subject for all measures containing "-mean-" and "-std-" after translation..
 
 
 ##Data Dictionary

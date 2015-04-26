@@ -180,6 +180,6 @@ data_1 <- rbind(test_d, train_d)
 data_2 <- data_1 %>% group_by(subject, activity, measure) %>% summarise(avg = mean(value))
 
 # write output files
-write.csv(data_1, file="HRA_data_mean_std_data.csv", row.names=FALSE)
-write.csv(data_2, file="HRA_data_average.csv", row.names=FALSE)
+write.table(data_1, file="HRA_data_mean_std_data.txt", row.names=FALSE)
+write.table(data_2, file="HRA_data_average.txt", row.names=FALSE)
 
