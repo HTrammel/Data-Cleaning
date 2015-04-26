@@ -131,11 +131,11 @@ actv_lbl <- rename(actv_lbl, activity = V2)
 #----------------------------------------------------
 
 # Read the subject_test.txt file into create tables. Assign "subject" to column name
-s_test <- read.table("./data/subject_test.txt", col.name="subject") %>% tbl_df()
+s_test <- read.table("./data/subject_test.txt", col.name="subject")
 
 # Read the y_test file (subject and activity) data and join the activity lables to the activities.
 y_test <- read.table("./data/y_test.txt") %>% tbl_df() %>% inner_join(actv_lbl,by="V1") 
-activity <- y_test$activity # extract the joined activity labels for later use
+activity <- as.character(y_test$activity) # extract the joined activity labels for later use
 
 # Read the X_test file.  Note the columns are automatically assigned V1...V561
 x_test <- read.table("./data/X_test.txt") %>% tbl_df() 
@@ -154,11 +154,11 @@ test_d <- cbind(s_test, activity, x_test) %>% # add subject and activity values 
 #----------------------------------------------------
 
 # Read the subject_train.txt file into create tables. Assign "subject" to column name
-s_train <- read.table("./data/subject_train.txt", col.name="subject") %>% tbl_df()
+s_train <- read.table("./data/subject_train.txt", col.name="subject")
 
 # Read the y_train file (subject and activity) data and join the activity lables to the activities.
 y_train <- read.table("./data/y_train.txt") %>% tbl_df() %>% inner_join(actv_lbl,by="V1")
-activity <- y_train$activity # extract the joined activity labels for later use
+activity <- as.character(y_train$activity) # extract the joined activity labels for later use
 
 # Read the X_train.txt file.  Note the columns are automatically assigned V1...V561
 x_train <- read.table("./data/X_train.txt") %>% tbl_df() 
@@ -180,6 +180,6 @@ data_1 <- rbind(test_d, train_d)
 data_2 <- data_1 %>% group_by(subject, activity, measure) %>% summarise(avg = mean(value))
 
 # write output files
-write.table(data_1, file="HRA_data_mean_std_data.txt", row.names=FALSE)
+# write.table(data_1, file="HRA_data_mean_std_data.txt", row.names=FALSE)
 write.table(data_2, file="HRA_data_average.txt", row.names=FALSE)
 
